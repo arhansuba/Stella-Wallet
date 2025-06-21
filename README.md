@@ -1,69 +1,96 @@
-# sep-smart-wallet
+# ✨ Stella Wallet ✨
 
-> [!WARNING]  
-> This code is for demonstration purposes only and has not been audited. Do not use it to store, protect, or secure assets or accounts on a public network.
+![Stella Wallet](docs-images/stella-banner.png)
 
-A passkey-based smart wallet that interacts with SEP-10c (alpha) and SEP-24 protocols.
+[![Hackathon Project](https://img.shields.io/badge/Hackathon-Project-blueviolet)](https://stellar.org)
+[![Made with Soroban](https://img.shields.io/badge/Made%20with-Soroban-orange)](https://soroban.stellar.org)
+[![Uses WebAuthn](https://img.shields.io/badge/Uses-WebAuthn-blue)](https://webauthn.guide)
 
-## Getting Started
+> **IMPORTANT NOTICE**
+> This is a Hackathon project. Not recommended for storing real assets or handling live transactions.
 
-### Prerequisites
+## 🚀 The Next Evolution in Stellar Wallets
 
-- Node.js 20.x or higher
-- [stellar-cli]
-- (optional) Docker, for deploying the test anchor
+**Stella Wallet** revolutionizes blockchain interactions on Stellar by combining cutting-edge passkey technology with smart contract functionality. Say goodbye to seed phrases and hello to the future of web3 authentication!
 
-### Installation
+### 🔒 Why Stella Wallet?
 
-The following commands use Yarn, but you can use npm if you prefer:
+Our hackathon project addresses a key pain point in crypto: **complex, insecure authentication**. By leveraging WebAuthn (the same tech powering passwordless login on major platforms), we've created a wallet that's both more secure AND easier to use.
+
+## 🌟 Key Features
+
+- **Passwordless Security**: Authenticate with fingerprints, face recognition or security keys
+- **Smart Contract Integration**: Built natively on Soroban, Stellar's powerful smart contract platform
+- **Cross-Platform Compatibility**: Seamlessly works across devices that support WebAuthn
+- **SEP Protocol Support**: First-class integration with Stellar Ecosystem Proposals for frictionless anchor interactions
+- **Enhanced User Experience**: Intuitive interface designed for both crypto veterans and newcomers
+
+## Quick Start
+
+### Requirements
+
+- Node.js 20+
+- Stellar CLI (for contract interactions)
+- Docker (optional, for local anchor testing)
+
+### Development Setup
 
 ```sh
-yarn install
-yarn dev
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
 ```
 
-### Deploying a Test Anchor
+### Testing with an Anchor
 
-To interact with the SEP-10c and SEP-24 protocols, you need a test anchor. Follow these steps to deploy one:
+For a complete testing environment with SEP-10c and SEP-24:
 
-1. Clone the [java-stellar-anchor-sdk](https://github.com:stellar/java-stellar-anchor-sdk) repository on the `feature/m24-demo` branch:
+1. Set up the test anchor:
+```sh
+# Clone the anchor SDK (use the feature branch for demo)
+git clone -b feature/m24-demo https://github.com/stellar/java-stellar-anchor-sdk.git
 
-    ```sh
-    git clone -b feature/m24-demo git@github.com:stellar/java-stellar-anchor-sdk.git
-    ```
+# Build and run with Docker
+cd java-stellar-anchor-sdk
+docker build --build-arg BASE_IMAGE=gradle:7.6.4-jdk17 -t anchor-platform:local ./
+docker compose -f service-runner/src/main/resources/docker-compose.yaml up -d
+```
 
-2. Build the project using Docker:
+2. Connect Stella Wallet to your anchor by setting the TOML URL to `http://localhost:8080`
 
-   ```sh
-   docker build --build-arg BASE_IMAGE=gradle:7.6.4-jdk17 -t anchor-platform:local ./
-   ```
+![Connecting to an anchor](docs-images/Configure_Toml_URL.gif)
 
-3. Run the project with Docker Compose:
+## Smart Contract Information
 
-   ```sh
-   docker compose -f service-runner/src/main/resources/docker-compose.yaml up -d
-   ```
+Stella Wallet uses Soroban contracts that are currently deployed to the Stellar testnet. Note that the testnet resets periodically (next reset: December 10th, 2024).
 
-### Communicating Bwtween the Wallet and the Anchor
+### After Testnet Reset
 
-To connect the wallet to the anchor, configure the TOML address in the wallet’s frontend to point to the domain serving the stellar.toml file of the anchor. If you’re using the test anchor, the URL will be `http://localhost:8080`.
+To redeploy the necessary contracts:
 
-Refer to the following GIF for a visual guide on configuring the TOML URL:
+1. Follow instructions in the [soroban directory](./soroban/README.md)
+2. Update your environment variables:
+   - Set `VITE_PASSKEY_CONTRACT_FACTORY` to your new `WEBAUTHN_FACTORY` value
+   - Set `VITE_PASSKEY_CONTRACT_WALLET_WASM` to your new `WEBAUTHN_WASM` value
 
-![Configuring your *.toml url](docs-images/Configure_Toml_URL.gif)
+See [.env.example](./.env.example) for reference.
 
-### Soroban Contracts
+---
 
-#### If You Are Reading this Before December 10th 2024
+## Learn More
 
-The code included here relies on contracts deployed to the Stellar testnet network and will be available for a limited time, unytil the next testnet reset (scheduled for December 10th 2024).
+- [Soroban Documentation](./soroban/README.md)
+- [Stellar Developer Portal](https://developers.stellar.org)
+- [WebAuthn Standard](https://www.w3.org/TR/webauthn-2/)
 
-#### If You Are Reading this After December 10th 2024
+## 🏆 Hackathon Vision
 
-If you try to run it after that date, you'll need to redeploy the contracts, which is explained in the [soroban](./soroban/README.md) directory and can be done easily through the `Makefile` included on that directory.
+Stella Wallet represents our vision for the future of crypto wallets: secure by default, easy to use, and built on open standards. We believe that mainstream adoption of blockchain technology requires removing friction points like seed phrases while enhancing security through modern authentication standards.
 
-After deploying the contracts and retrieving the updated values for `WEBAUTHN_FACTORY` and `WEBAUTHN_WASM`, use these values to update the `.env` file by setting the `VITE_PASSKEY_CONTRACT_FACTORY` and `VITE_PASSKEY_CONTRACT_WALLET_WASM` variables, as demonstrated in the [`.env.example`] file.
+By combining WebAuthn with Stellar's powerful smart contract platform, we're demonstrating how the next generation of wallets can provide both better security and improved user experience.
 
-[stellar-cli]: https://developers.stellar.org/docs/build/smart-contracts/getting-started/setup#install-the-stellar-cli
-[`.env.example`]: ./.env.example
-# Stella-Wallet
+## 🙏 Acknowledgements
+
+Special thanks to the Stellar Development Foundation for creating the ecosystem that makes this innovation possible, and to the WebAuthn standard creators for pushing forward passwordless authentication technology.
