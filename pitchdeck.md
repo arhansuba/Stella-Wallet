@@ -173,24 +173,7 @@ Stellar Network (Global Settlement)
 
 ---
 
-## 👥 **Team & Advisors**
 
-### **Core Team**
-- **CEO**: Blockchain veteran, 3 successful exits, Stanford CS
-- **CTO**: Former Google Chrome security engineer, WebAuthn expert
-- **Head of Product**: Ex-Coinbase, led wallet products for 50M+ users
-- **Lead Developer**: Soroban core contributor, Rust/smart contract expert
-
-### **Advisory Board**
-- **Stellar Development Foundation** leadership
-- **WebAuthn Working Group** members from Google/Apple
-- **Top crypto VCs** from a16z, Coinbase Ventures
-- **Security researchers** from academic institutions
-
-### **Funding Status**
-- **Pre-seed**: $2M from angel investors and crypto funds
-- **Series A**: Targeting $10M from tier-1 VCs (Q2 2025)
-- **Strategic partnerships** with Stellar Foundation and device manufacturers
 
 ---
 
