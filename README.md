@@ -58,14 +58,6 @@ docker build --build-arg BASE_IMAGE=gradle:7.6.4-jdk17 -t anchor-platform:local 
 docker compose -f service-runner/src/main/resources/docker-compose.yaml up -d
 ```
 
-2. Connect Stella Wallet to your anchor by setting the TOML URL to `http://localhost:8080`
-
-![Connecting to an anchor](docs-images/Configure_Toml_URL.gif)
-
-## Smart Contract Information
-
-Stella Wallet uses Soroban contracts that are currently deployed to the Stellar testnet. Note that the testnet resets periodically (next reset: December 10th, 2024).
-
 ### After Testnet Reset
 
 To redeploy the necessary contracts:
